@@ -21,12 +21,15 @@ public class MainFrame extends JFrame {
     public MainFrame(ControllerLoginListener cll, ControllerSearchListener csl, ControllerAddToCart cac, ControllerCheckoutListener ccl, ControllerCancelTicketListener cct) {
         super("Ticket Reservation");
         this.loginFrame = new LoginFrame((String email, String password) -> {
-            user = cll.login(email, password);
+        	RegisteredUser ru = (RegisteredUser) cll.login(email, password);
+            user = ru;
             if (user != null) {
                 loginFrame.dispose();
+                JOptionPane.showMessageDialog(loginFrame, "Welcome back, " + ru.getName() , "Success", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
                 loginFrame.clearFields();
+                JOptionPane.showMessageDialog(loginFrame, "Your email or password is incorrect.", "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
         });
 

@@ -26,7 +26,7 @@ public class RegisteredUser extends User {
         this.payment.setPaymentStrategy(new RegisteredPaymentStrategy());
     }
     
-    public RegisteredUser(int id, String email, double credits, boolean registered, String name, String password, Address address, ArrayList<Card> card) {
+    public RegisteredUser(int id, String email, double credits, boolean registered, String name, String password, Address address, ArrayList<Card> cards) {
     	super(id, email, credits, registered);
     	this.password = password;
     	this.name = name;
@@ -46,7 +46,6 @@ public class RegisteredUser extends User {
     	this.address = address;
     	this.cards = new ArrayList<>();
     	for (Card c : cards) {
-    		System.out.println(c.getCardNumber());
     		this.cards.add(c);
     	}
     	this.payment = new Payment();

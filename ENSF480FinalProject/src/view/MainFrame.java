@@ -70,8 +70,9 @@ public class MainFrame extends JFrame {
         
         loginButton = new JButton("Login");
         JPanel topPanel = new JPanel();
-        topPanel.add(searchBar);
-        topPanel.add(loginButton);
+        topPanel.setLayout(new BorderLayout());
+        topPanel.add(searchBar, BorderLayout.CENTER);
+        topPanel.add(loginButton, BorderLayout.EAST);
         
         loginButton.addActionListener((e)->{
         	loginFrame.setVisible(true);

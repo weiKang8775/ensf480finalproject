@@ -42,18 +42,20 @@ public class ModelDataController implements IDBCredentials {
     				+ "VALUES ("
     				+ t.getUserId() + ", "
     				+ t.getSeatId() + ", "
-    				+ t.getPurchaseDate() + ")";
+    				+ "'" + t.getPurchaseDate() + "')";
     		Statement s;
 			try {
 				s = conn.createStatement();
 				s.executeUpdate(query);
 				Seat seat = t.getSeat();
-				query = "INSERT INTO seats (row, col, number, theatre_id)"
+				query = "INSERT INTO seats (`row`, col, `number`, theatre_id, price)"
 						+ "VALUES ("
 						+ seat.getRow() + ", "
 						+ seat.getCol() + ", "
 						+ seat.getSeatNumber() + ", "
-						+ seat.getTheatre().getId() + ")";
+						+ seat.getTheatre().getId() + ", "
+						+ seat.getPrice() + ")";
+				System.out.println(query);
 				s.executeUpdate(query);
 				s.close();
 			} catch (SQLException e) {
@@ -241,15 +243,4 @@ public class ModelDataController implements IDBCredentials {
         return seats;
     }
     
-    public static void main(String[] args) {
-//    	ModelDataController mdc = new ModelDataController();
-//    	mdc.getUsers();
-//    	LoginServer ls = LoginServer.getInstance();
-//    	Address addr = new Address("200 usertwo St. NW", "Calgary", "AB", "Canada", "S8V1T3");
-//    	ArrayList<Card> cards = new ArrayList<>();
-//    	cards.add(new Card("User Two", "1568784531548754", "213", new Date(System.currentTimeMillis())));
-//    	RegisteredUser newUser = ls.addRegisteredUser(new RegisteredUser("user2@example.com", 0, true, "User Two", "user2", addr, cards));
-//    	mdc.saveUser(newUser);
-//    	System.out.println(ls.findRU("user2@example.com").getId());
-    }
 }

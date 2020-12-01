@@ -25,6 +25,7 @@ public class MainFrame extends JFrame {
             user = ru;
             if (user != null) {
                 loginFrame.dispose();
+                loginButton.setEnabled(false);
                 JOptionPane.showMessageDialog(loginFrame, "Welcome back, " + ru.getName() , "Success", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
@@ -46,11 +47,21 @@ public class MainFrame extends JFrame {
         });
 
         this.shoppingCartPanel = new ShoppingCartPanel((ArrayList<Ticket> tickets) -> {
+        	String email = "";
+        	Card card;
         	if (user == null) {
                 // ask the user for card.
                 CardInputFrame cif = new CardInputFrame();
-                Card card = cif.getCardFromUser();
-                String email = cif.getEmailFromUser();
+                card = cif.getCardFromUser();
+                email = cif.getEmailFromUser();
+                
+                ArrayList<Ticket> currentTickets = ccl.checkout(card, email);
+                purchaseHistoryPanel.addTickets(currentTickets);
+        	}
+        	else {
+        		RegisteredUser ru = (RegisteredUser) user;
+        		card = ru.getCards().get(0);
+                email = ru.getEmail();
                 
                 ArrayList<Ticket> currentTickets = ccl.checkout(card, email);
                 purchaseHistoryPanel.addTickets(currentTickets);

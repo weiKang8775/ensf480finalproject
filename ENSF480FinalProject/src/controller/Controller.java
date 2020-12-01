@@ -54,7 +54,12 @@ public class Controller {
         ControllerCheckoutListener ccl = new ControllerCheckoutListener() {
             @Override
             public ArrayList<Ticket> checkout(Card card, String email) {
-                return client.checkout(card, email);
+                ArrayList<Ticket> checkedOutTickets = client.checkout(card, email);
+                for(Ticket t: checkedOutTickets) {
+                	System.out.println(t.getMovieName());
+                }
+                mdc.saveTickets(checkedOutTickets);
+                return checkedOutTickets;
             }
         };
 

@@ -1,4 +1,4 @@
-# ENSF 409 Final Project
+# ENSF 480 Final Project
 
 ## Usage
 
@@ -53,4 +53,6 @@ The bonus feature implemented into our program is the login component.
 
 ## Info
 * Thomas Kahessay 		thomas.kahessay@ucalgary.ca 
-* Yassin Bayoumy			yassin.bayoumy@ucalgary.ca
+* Arpith Daniel Indukuri	arpith.indukuri@ucalgary.ca
+* Wei Kang			wei.kang@ucalgary.ca
+* Ryan Ittyipe			ryan.ittyipe1@ucalgary.ca

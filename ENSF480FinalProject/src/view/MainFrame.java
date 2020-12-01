@@ -11,6 +11,7 @@ import model.user.*;
 public class MainFrame extends JFrame {
     private LoginFrame loginFrame;
     private SearchBar searchBar;
+    private JButton loginButton;
     private MoviesPanel moviesPanel;
     private MovieDetailsPanel movieDetailsPanel;
     private ShoppingCartPanel shoppingCartPanel;
@@ -46,11 +47,23 @@ public class MainFrame extends JFrame {
                 // ask the user for card.
                 CardInputFrame cif = new CardInputFrame();
                 Card card = cif.getCardFromUser();
+                String email = cif.getEmailFromUser();
                 
-                ccl.checkout(card, tickets);
+                ArrayList<Ticket> currentTickets = ccl.checkout(card, email);
+                purchaseHistoryPanel.addTickets(currentTickets);
         	}
         });
-
+        
+        loginButton = new JButton("Login");
+        JPanel topPanel = new JPanel();
+        topPanel.add(searchBar);
+        topPanel.add(loginButton);
+        
+        loginButton.addActionListener((e)->{
+        	loginFrame.setVisible(true);
+        });
+        
+        
         JTabbedPane ticketPane = new JTabbedPane();
         ticketPane.addTab("Shopping Cart", shoppingCartPanel);
         ticketPane.addTab("Purchase History", purchaseHistoryPanel);
@@ -67,7 +80,7 @@ public class MainFrame extends JFrame {
         });
 
         this.setLayout(new BorderLayout());
-        this.add(this.searchBar, BorderLayout.NORTH);
+        this.add(topPanel, BorderLayout.NORTH);
         this.add(this.moviesPanel, BorderLayout.WEST);
         this.add(this.movieDetailsPanel, BorderLayout.CENTER);
         this.add(ticketPane, BorderLayout.EAST);
@@ -80,4 +93,5 @@ public class MainFrame extends JFrame {
     public void initializeMovieList(ArrayList<Movie> movies) {
         moviesPanel.setMovies(movies);
     }
+    
 }

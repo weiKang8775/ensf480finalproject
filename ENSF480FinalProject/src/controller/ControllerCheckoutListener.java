@@ -5,5 +5,5 @@ import model.movie.Ticket;
 import model.user.Card;
 
 public interface ControllerCheckoutListener {
-    void checkout(Card card, ArrayList<Ticket> tickets);
+    ArrayList<Ticket> checkout(Card card, String email);
 }

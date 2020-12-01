@@ -9,5 +9,6 @@ public interface IDBCredentials {
 	   //  Database credentials
 	   static final String USERNAME = "root";
 	   static final String PASSWORD = "KwKw.1716";
+	   static final String PASSWORD = "ensfensf";
 
 }

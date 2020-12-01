@@ -53,8 +53,8 @@ public class Controller {
         // Setting up checkout listener
         ControllerCheckoutListener ccl = new ControllerCheckoutListener() {
             @Override
-            public void checkout(Card card, ArrayList<Ticket> tickets) {
-                client.pay(card);
+            public ArrayList<Ticket> checkout(Card card, String email) {
+                return client.checkout(card, email);
             }
         };
 

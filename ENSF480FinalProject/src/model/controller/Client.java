@@ -1,5 +1,7 @@
 package model.controller;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import model.movie.*;
@@ -90,8 +92,13 @@ public class Client {
     		pay(card, email);
     	}
     	else {
+    		for(Ticket t: tickets) {
+    			t.setPurchaseDate(new Timestamp(System.currentTimeMillis()));
+    			t.setUser(user);
+    		}
     		pay(card);
     	}
+    	shoppingCart.clear();
     	return tickets;
     }
 
@@ -101,6 +108,10 @@ public class Client {
 
     public void pay(Card card, String email) {
         this.user = this.loginServer.findUser(email);
+        for(Ticket t: shoppingCart) {
+        	t.setPurchaseDate(new Timestamp(System.currentTimeMillis()));
+        	t.setUser(user);
+        }
         this.user.setShoppingCart(this.shoppingCart);
         this.user.pay(card);
     }

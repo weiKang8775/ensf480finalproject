@@ -128,4 +128,8 @@ public class User implements Comparable {
         User u = (User) o;
         return this.email.compareTo(u.getEmail());
     }
+
+	public ArrayList<Ticket> getPurchaseHistory() {
+		return purchaseHistory;
+	}
 }

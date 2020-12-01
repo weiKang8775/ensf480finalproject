@@ -46,7 +46,6 @@ public class RegisteredUser extends User {
     	this.address = address;
     	this.cards = new ArrayList<>();
     	for (Card c : cards) {
-    		System.out.println(c.getCardNumber());
     		this.cards.add(c);
     	}
     	this.payment = new Payment();

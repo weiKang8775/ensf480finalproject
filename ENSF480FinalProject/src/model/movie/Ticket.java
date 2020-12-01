@@ -77,4 +77,12 @@ public class Ticket {
         st += "Price: " + getPrice() + "\n";
         return  st;
     }
+
+	public void setUser(User user) {
+		this.user = user;	
+	}
+
+	public void setPurchaseDate(Timestamp date) {
+		this.purchaseDate = date;	
+	}
 }

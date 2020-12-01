@@ -8,6 +8,6 @@ public interface IDBCredentials {
 
 	   //  Database credentials
 	   static final String USERNAME = "root";
-	   static final String PASSWORD = "123456";
+	   static final String PASSWORD = "ensfensf";
 
 }

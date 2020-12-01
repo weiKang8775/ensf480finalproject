@@ -81,13 +81,18 @@ public class Client {
 
     /*---------- PAYMENT RELATED ------------*/
     
-    public void checkout(Card card, String email) {
+    public ArrayList<Ticket> checkout(Card card, String email) {
+    	ArrayList<Ticket> tickets = new ArrayList<>();
+    	for(Ticket t: shoppingCart) {
+    		tickets.add(t);
+    	}
     	if (user == null) {
     		pay(card, email);
     	}
     	else {
     		pay(card);
     	}
+    	return tickets;
     }
 
     public void pay(Card card) {

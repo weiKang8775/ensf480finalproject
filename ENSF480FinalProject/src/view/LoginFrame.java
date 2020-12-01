@@ -81,6 +81,7 @@ public class LoginFrame extends JFrame {
 		add(panel);
 
 		pack();
+		this.setLocationRelativeTo(null);
     }
     
     public void clearFields() {

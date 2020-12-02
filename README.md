@@ -39,12 +39,12 @@ java ServerController
 java Controller
 ```
 
-If all goes well their should be a GUI to login which can be logged in using
+If all goes well, the application will run, and the credentials for each user is listed below if you wish to login
 
-		username: 1001 password: password
-		username: 1002 password: password
+		email: user1@example.com password: user1
+		email: user2@example.com password: user2
 		... 
-		username: 1010 password: password
+		email: user5@example.com password: user5
 
 After they have logged in, the functions of the program allow the user to search for a course, enroll in a course, drop a course, view course catalogue, and view student courses. (None of the students come with registrations in the database to begin with).
 

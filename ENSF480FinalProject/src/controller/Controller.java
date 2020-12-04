@@ -9,6 +9,7 @@ import model.movie.*;
 import model.strategies.searchStrategy.SearchByMovie;
 import model.strategies.searchStrategy.SearchByShowtime;
 import model.user.Card;
+import model.user.RegisteredUser;
 import model.user.User;
 import view.MainFrame;
 
@@ -70,9 +71,18 @@ public class Controller {
                 client.cancel(t);
             }
         };
+        
+        ControllerRegisterListener crl = new ControllerRegisterListener() {
+
+			@Override
+			public void setRegisteredUser(RegisteredUser registeredUser) {
+				client.setRegisteredUser(registeredUser);	
+			}
+        	
+        };
 
         // SwingUtilities.invokeLater(() -> {
-            mf = new MainFrame(cll, csl, cac, ccl, cct);
+            mf = new MainFrame(cll, csl, cac, ccl, cct, crl);
         // });
 
     }

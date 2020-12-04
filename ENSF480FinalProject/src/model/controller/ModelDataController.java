@@ -55,7 +55,6 @@ public class ModelDataController implements IDBCredentials {
 						+ seat.getSeatNumber() + ", "
 						+ seat.getTheatre().getId() + ", "
 						+ seat.getPrice() + ")";
-				System.out.println(query);
 				s.executeUpdate(query);
 				s.close();
 			} catch (SQLException e) {

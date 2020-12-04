@@ -52,6 +52,11 @@ public class Client {
     public boolean hasUser() {
         return this.user != null;
     }
+    
+    public void setRegisteredUser(RegisteredUser registeredUser) {
+    	user = registeredUser;
+    	registeredUser.setShoppingCart(shoppingCart);
+    }
 
     /*---------- MOVIES RELATED ------------*/
 

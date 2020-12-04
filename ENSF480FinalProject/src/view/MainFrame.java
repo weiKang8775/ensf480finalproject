@@ -6,19 +6,23 @@ import java.util.ArrayList;
 
 import controller.*;
 import model.movie.*;
+import model.shared.Address;
 import model.user.*;
 
 public class MainFrame extends JFrame {
     private LoginFrame loginFrame;
     private SearchBar searchBar;
     private JButton loginButton;
+    private JButton registerButton;
     private MoviesPanel moviesPanel;
     private MovieDetailsPanel movieDetailsPanel;
     private ShoppingCartPanel shoppingCartPanel;
     private PurchaseHistoryPanel purchaseHistoryPanel;
+    private RegisterFrame registerFrame;
     private User user;
 
-    public MainFrame(ControllerLoginListener cll, ControllerSearchListener csl, ControllerAddToCart cac, ControllerCheckoutListener ccl, ControllerCancelTicketListener cct) {
+    public MainFrame(ControllerLoginListener cll, ControllerSearchListener csl, ControllerAddToCart cac, ControllerCheckoutListener ccl, ControllerCancelTicketListener cct,
+    		ControllerRegisterListener crl) {
         super("Ticket Reservation");
         this.loginFrame = new LoginFrame((String email, String password) -> {
         	RegisteredUser ru = (RegisteredUser) cll.login(email, password);
@@ -26,12 +30,25 @@ public class MainFrame extends JFrame {
             if (user != null) {
                 loginFrame.dispose();
                 loginButton.setEnabled(false);
+                registerButton.setEnabled(false);
                 JOptionPane.showMessageDialog(loginFrame, "Welcome back, " + ru.getName() , "Success", JOptionPane.INFORMATION_MESSAGE);
             }
             else {
                 loginFrame.clearFields();
                 JOptionPane.showMessageDialog(loginFrame, "Your email or password is incorrect.", "Login Failed", JOptionPane.ERROR_MESSAGE);
             }
+        });
+        
+        this.registerFrame = new RegisterFrame((String email, String name, String password, Address address, Card card)-> {
+        	ArrayList<Card> cards = new ArrayList<>();
+        	cards.add(card);
+        	RegisteredUser ru = new RegisteredUser(email, 0, true, name, password, address, cards);
+        	user = ru;
+        	crl.setRegisteredUser(ru);
+        	JOptionPane.showMessageDialog(registerFrame, "Registered. $45 has been charged to your card.", "Registered.", JOptionPane.INFORMATION_MESSAGE);
+        	registerFrame.dispose();
+        	registerButton.setEnabled(false);
+        	loginButton.setEnabled(false);
         });
 
         this.moviesPanel = new MoviesPanel((Movie m) -> {
@@ -69,13 +86,19 @@ public class MainFrame extends JFrame {
         });
         
         loginButton = new JButton("Login");
+        registerButton = new JButton("Register");
         JPanel topPanel = new JPanel();
         topPanel.setLayout(new BorderLayout());
         topPanel.add(searchBar, BorderLayout.CENTER);
         topPanel.add(loginButton, BorderLayout.EAST);
+        topPanel.add(registerButton, BorderLayout.WEST);
         
         loginButton.addActionListener((e)->{
         	loginFrame.setVisible(true);
+        });
+        
+        registerButton.addActionListener((e)->{
+        	registerFrame.setVisible(true);
         });
         
         
